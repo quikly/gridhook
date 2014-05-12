@@ -15,7 +15,7 @@ module Gridhook
       else
         begin
           events = MultiJson.load(body)
-          process_events event
+          process_events events
         rescue MultiJson::LoadError
         end
       end
