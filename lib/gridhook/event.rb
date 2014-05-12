@@ -13,7 +13,11 @@ module Gridhook
       if params.has_key? "_json"
         process_events params["_json"]
       else
-        process_event params.except(:controller, :action)
+        begin
+          events = MultiJson.load(body)
+          process_events event
+        rescue MultiJson::LoadError
+        end
       end
     end
 
